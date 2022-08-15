@@ -1,0 +1,15 @@
+
+spring:
+  r2dbc:
+    url: "r2dbc:mariadb://ootrtournament:ootrtournament@127.0.0.1:3306/ootrtournament"
+    properties:
+      tinyInt1isBit: false
+    pool:
+      enabled: true
+      initial-size: 2
+      max-size: 20
+
+
+management:
+  server:
+    port: 8081
