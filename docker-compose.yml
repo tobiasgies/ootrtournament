@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:10.8
+    restart: always
+    ports:
+      - published: 3306
+        target: 3306
+    environment:
+      MARIADB_ROOT_PASSWORD: ootrroot
+      MARIADB_DATABASE: ootrtournament
+      MARIADB_USER: ootrtournament
+      MARIADB_PASSWORD: ootrtournament
