@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head" />
+<body>
+<header th:replace="layout :: header" />
+<nav th:replace="layout :: navigation" />
+<h2>My races</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Tournament</th>
+            <th>Opponent(s)</th>
+            <th>Date / Time</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>
+                <a href="?page=0">&lt;&lt;</a>
+            </td>
+            <td colspan="3">Pages:
+                <span class="current-page">1</span>
+                <a href="?page=2">2</a>
+                <a href="?page=3">3</a>
+                <a href="?page=4">4</a>
+                <a href="?page=5">5</a></td>
+            <td>
+                <a href="?page=2">&gt;&gt;</a>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td>Needs scheduling</td>
+            <td><a href="/tournaments/cc-s6">Challenge Cup: Season 6</a> - Round of 32</td>
+            <td>username2</td>
+            <td><a href="/races/cc-s6-123/schedule">Schedule</a></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Needs scheduling</td>
+            <td><a href="/tournaments/rush-ice-2022">Rush Ice% Fun Tournament 2022</a> - Round of 8</td>
+            <td>WTHH</td>
+            <td><a href="/races/rush-ice-2022-2/schedule">Schedule</a></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Upcoming</td>
+            <td><a href="/tournaments/random-other-tournament">Random other tournament</a> - Group E</td>
+            <td>admin</td>
+            <td>2022-09-01 18:00 CEST</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Needs result</td>
+            <td><a href="/tournaments/random-other-tournament">Random other tournament</a> - Group E</td>
+            <td>admin2</td>
+            <td>2022-08-25 17:00 CEST</td>
+            <td><a href="/races/random-other-tournament-5/result">Enter result</a></td>
+        </tr>
+        <tr>
+            <td>Done</td>
+            <td><a href="/tournaments/random-other-tournament">Random other tournament</a> - Group E</td>
+            <td>ACreativeUsername</td>
+            <td>2022-08-21 16:00 CEST</td>
+            <td>You won!</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
