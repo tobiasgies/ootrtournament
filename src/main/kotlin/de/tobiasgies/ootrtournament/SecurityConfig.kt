@@ -15,6 +15,7 @@ class SecurityConfig {
     fun springSecurityFilterChain(http: ServerHttpSecurity) = http {
         authorizeExchange {
             authorize("/", permitAll)
+            authorize("/tournaments/**", permitAll)
             authorize("/my/**", authenticated)
             authorize(anyExchange, denyAll)
         }
