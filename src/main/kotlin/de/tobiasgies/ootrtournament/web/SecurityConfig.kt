@@ -1,4 +1,4 @@
-package de.tobiasgies.ootrtournament
+package de.tobiasgies.ootrtournament.web
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -7,7 +7,6 @@ import org.springframework.security.config.web.server.invoke
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService
 import org.springframework.security.core.userdetails.User
-import org.springframework.security.provisioning.InMemoryUserDetailsManager
 
 @Configuration
 class SecurityConfig {

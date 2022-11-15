@@ -1,4 +1,4 @@
-package de.tobiasgies.ootrtournament
+package de.tobiasgies.ootrtournament.web
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
