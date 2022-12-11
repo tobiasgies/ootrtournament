@@ -15,6 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import reactor.core.publisher.Mono
+import javax.annotation.PreDestroy
 
 @Configuration
 class DiscordConfiguration {
@@ -42,6 +43,11 @@ class DiscordConfiguration {
             }.then()
             connectedHandler.and(lifecycleEventHandler)
         }.block()!!
+
+    @PreDestroy
+    fun teardown(gatewayDiscordClient: GatewayDiscordClient) {
+        gatewayDiscordClient.logout().block()
+    }
 
     companion object : KLogging()
 }
