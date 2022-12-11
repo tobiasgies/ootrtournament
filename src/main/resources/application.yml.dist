@@ -1,3 +1,5 @@
+discord:
+  token: change-me
 
 spring:
   r2dbc:
