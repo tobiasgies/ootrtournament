@@ -1,8 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+repositories {
+	mavenCentral()
+	maven("https://repo.spring.io/milestone")
+}
+
 plugins {
-	id("org.springframework.boot") version "2.7.2"
-	id("io.spring.dependency-management") version "1.0.12.RELEASE"
+	id("org.springframework.boot") version "3.0.0"
+	id("io.spring.dependency-management") version "1.1.0"
 
 	id("com.gorylenko.gradle-git-properties") version "2.4.1"
 
@@ -24,7 +29,7 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "2021.0.3"
+extra["springCloudVersion"] = "2022.0.0-RC3"
 
 dependencies {
 	// Spring base application
@@ -35,9 +40,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5")
+	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 
-	runtimeOnly("org.mariadb:r2dbc-mariadb")
+	runtimeOnly("org.mariadb:r2dbc-mariadb:1.1.2")
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -54,17 +59,16 @@ dependencies {
 
 	// Observability
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
-	implementation("io.sentry:sentry-spring-boot-starter:6.3.1")
-	implementation("io.sentry:sentry-logback:6.3.1")
+	implementation("io.sentry:sentry-spring-boot-starter:6.9.2")
+	implementation("io.sentry:sentry-logback:6.9.2")
 
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     // External services
-	implementation("com.discord4j:discord4j-core:3.2.2")
-	implementation("com.github.twitch4j:twitch4j:1.11.0")
+	implementation("com.discord4j:discord4j-core:3.2.3")
+	implementation("com.github.twitch4j:twitch4j:1.12.0")
 }
 
 dependencyManagement {
