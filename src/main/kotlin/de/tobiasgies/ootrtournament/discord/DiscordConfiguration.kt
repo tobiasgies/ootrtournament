@@ -24,17 +24,18 @@ class DiscordConfiguration {
     @Bean
     fun gatewayDiscordClient(discordClient: DiscordClient) =
         discordClient.login().doOnNext { client ->
-            client.on(ReadyEvent::class.java) {
+            val connectedHandler = client.on(ReadyEvent::class.java) {
                 Mono.fromRunnable<Void> {
                     logger.info { "Connection to Discord has become rady. " +
                             "Logged in as ${it.self.username}#${it.self.discriminator}." }
                 }
-            }.subscribe()
-            client.on(GatewayLifecycleEvent::class.java) {
+            }.then()
+            val lifecycleEventHandler = client.on(GatewayLifecycleEvent::class.java) {
                 Mono.fromRunnable<Void> {
                     logger.debug { "Gateway lifecycle event received: $it - shard information: ${it.shardInfo}" }
                 }
-            }.subscribe()
+            }.then()
+            connectedHandler.and(lifecycleEventHandler)
         }.block()!!
 
     companion object : KLogging()
