@@ -11,15 +11,20 @@ import discord4j.core.event.domain.lifecycle.ReconnectFailEvent
 import discord4j.core.event.domain.lifecycle.ReconnectStartEvent
 import discord4j.core.event.domain.lifecycle.SessionInvalidatedEvent
 import mu.KLogging
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import reactor.core.publisher.Mono
 
 @Configuration
 class DiscordConfiguration {
+    @ConfigurationProperties(prefix = "discord")
+    data class DiscordProperties(
+        val token: String
+    )
 
     @Bean
-    fun discordClient(token: String) = DiscordClient.create(token)
+    fun discordClient(properties: DiscordProperties) = DiscordClient.create(properties.token)
 
     @Bean
     fun gatewayDiscordClient(discordClient: DiscordClient) =
