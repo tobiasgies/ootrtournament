@@ -31,7 +31,7 @@ class DiscordConfiguration {
         discordClient.login().doOnNext { client ->
             val connectedHandler = client.on(ReadyEvent::class.java) {
                 Mono.fromRunnable<Void> {
-                    logger.info { "Connection to Discord has become rady. " +
+                    logger.info { "Connection to Discord has become ready. " +
                             "Logged in as ${it.self.username}#${it.self.discriminator}." }
                 }
             }.then()
