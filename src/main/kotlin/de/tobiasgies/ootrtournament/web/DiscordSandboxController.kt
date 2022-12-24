@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 @RestController
 @RequestMapping("/discord")
 class DiscordSandboxController(private val gatewayDiscordClient: GatewayDiscordClient) {
-    @PostMapping("/testmessage")
+    @PostMapping("/helloworld")
     fun testmessage(): Mono<String> {
         return gatewayDiscordClient.getChannelById(Snowflake.of("1051485104096157739"))
             .flatMap {

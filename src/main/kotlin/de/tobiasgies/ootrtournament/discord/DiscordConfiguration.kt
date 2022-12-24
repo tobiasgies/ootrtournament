@@ -33,7 +33,7 @@ class DiscordConfiguration {
                     logger.debug { "Gateway lifecycle event received: $it - shard information: ${it.shardInfo}" }
                 }
             }.then()
-            connectedHandler.and(lifecycleEventHandler)
+            connectedHandler.and(lifecycleEventHandler).subscribe()
         }.block()!!
 
     companion object : KLogging()
