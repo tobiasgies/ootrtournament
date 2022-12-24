@@ -29,7 +29,7 @@ repositories {
 	mavenCentral()
 }
 
-extra["springCloudVersion"] = "2022.0.0-RC3"
+extra["springCloudVersion"] = "2022.0.0"
 
 dependencies {
 	// Spring base application
