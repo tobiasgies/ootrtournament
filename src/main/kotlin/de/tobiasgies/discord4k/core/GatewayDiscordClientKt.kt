@@ -1,5 +1,6 @@
 package de.tobiasgies.discord4k.core
 
+import de.tobiasgies.discord4k.core.retriever.EntityRetrieverKt
 import discord4j.common.util.Snowflake
 import discord4j.core.GatewayDiscordClient
 import discord4j.core.event.ReactiveEventAdapter
@@ -17,9 +18,9 @@ import kotlinx.coroutines.reactor.mono
 import kotlin.reflect.KClass
 
 val GatewayDiscordClient.kotlin: GatewayDiscordClientKt
-    get() = GatewayDiscordClientKt(this)
+    get() = GatewayDiscordClientKt.wrap(this)
 
-class GatewayDiscordClientKt(val java: GatewayDiscordClient) {
+class GatewayDiscordClientKt(override val java: GatewayDiscordClient) : EntityRetrieverKt {
     val rest: DiscordClientKt
         get() = java.rest().kotlin
 
@@ -81,6 +82,10 @@ class GatewayDiscordClientKt(val java: GatewayDiscordClient) {
 
     fun requestMemberChunks(request: RequestGuildMembers) = java.requestMemberChunks(request).asFlow()
 
-    // TODO create abstract proxy class for EntityRetriever, derive this class from it
-    fun withRetrievalStrategy(strategy: EntityRetrievalStrategy) = java.withRetrievalStrategy(strategy)
+    fun withRetrievalStrategy(strategy: EntityRetrievalStrategy): EntityRetrieverKt =
+        wrap(java.withRetrievalStrategy(strategy) as GatewayDiscordClient)
+
+    companion object {
+        fun wrap(java: GatewayDiscordClient) = GatewayDiscordClientKt(java)
+    }
 }

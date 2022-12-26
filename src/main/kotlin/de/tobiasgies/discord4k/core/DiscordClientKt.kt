@@ -8,7 +8,7 @@ import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.mono
 
 val DiscordClient.kotlin: DiscordClientKt
-    get() = DiscordClientKt(this)
+    get() = DiscordClientKt.wrap(this)
 
 class DiscordClientKt(val java: DiscordClient) {
     suspend fun login(): GatewayDiscordClient = java.login().awaitSingle()
@@ -31,4 +31,7 @@ class DiscordClientKt(val java: DiscordClient) {
         }.awaitSingle()
     }
 
+    companion object {
+        fun wrap(java: DiscordClient) = DiscordClientKt(java)
+    }
 }
