@@ -7,10 +7,10 @@ import kotlinx.coroutines.reactive.publish
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.mono
 
-class DiscordClientKt(val java: DiscordClient) {
-    val DiscordClient.kotlin: DiscordClientKt
-        get() = DiscordClientKt(this)
+val DiscordClient.kotlin: DiscordClientKt
+    get() = DiscordClientKt(this)
 
+class DiscordClientKt(val java: DiscordClient) {
     suspend fun login(): GatewayDiscordClient = java.login().awaitSingle()
 
     suspend fun withGateway(whileConnectedFunction: suspend (GatewayDiscordClient) -> Any?) {

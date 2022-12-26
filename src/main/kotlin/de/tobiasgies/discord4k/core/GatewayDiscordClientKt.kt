@@ -16,9 +16,12 @@ import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.mono
 import kotlin.reflect.KClass
 
+val GatewayDiscordClient.kotlin: GatewayDiscordClientKt
+    get() = GatewayDiscordClientKt(this)
+
 class GatewayDiscordClientKt(val java: GatewayDiscordClient) {
-    val GatewayDiscordClient.kotlin: GatewayDiscordClientKt
-        get() = GatewayDiscordClientKt(this)
+    val rest: DiscordClientKt
+        get() = java.rest().kotlin
 
     suspend fun webhookById(id: Snowflake) = java.getWebhookById(id).awaitSingle()
 
